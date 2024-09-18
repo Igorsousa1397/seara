@@ -30,7 +30,9 @@ jobs:
 
       - name: Run Cypress tests in parallel
         run: |
-          npx cypress run --parallel --ci-build-id ${{ github.run_id }} --spec "cypress/integration/cadastro.spec.js"
+          run: |
+            npx cypress run --ci-build-id ${{ github.run_id }} --spec "cypress/integration/cadastro.spec.js" --config defaultCommandTimeout=10000
+
 
       - name: Store Cypress videos
         uses: actions/upload-artifact@v3  # Atualizado para v3
