@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        browser: [chrome, chrome, firefox, firefox, edge, electron, chromium]  # Navegadores repetidos
+        browser: [chrome, firefox, edge, electron, chromium]  # Lista de todos os navegadores suportados
 
     steps:
       - name: Checkout the repository
@@ -32,4 +32,4 @@ jobs:
         run: npx cypress verify
 
       - name: Run Cypress tests in selected browser
-        run: npx cypress run --browser $
+        run: npx cypress run --browser ${{ matrix.browser }} --spec "cypress/e2e/**/*.cy.js"
