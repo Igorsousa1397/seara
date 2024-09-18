@@ -34,6 +34,6 @@ describe('Simulação de múltiplos cadastros', () => {
       // cy.get('.booking-form-button').scrollIntoView().click()
       // cy.wait(15000)
       // cy.get('#tag').should('have.text', 'Pronto!')
-    })
+    }) 
   }
 })
