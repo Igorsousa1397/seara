@@ -33,7 +33,7 @@ jobs:
           npx cypress run --parallel --ci-build-id ${{ github.run_id }} --spec "cypress/integration/cadastro.spec.js"
 
       - name: Store Cypress videos
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Atualizado para v3
         with:
           name: cypress-videos
           path: cypress/videos/
