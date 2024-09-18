@@ -12,7 +12,7 @@ describe('Simulação de múltiplos cadastros', () => {
   for (let i = 0; i < 5; i++) {
     it('Deve cadastrar um novo usuário', () => {
       const randomEmail = generateRandomEmail()
-      const randomName = generateRandomName();
+      const randomName = generateRandomName()
       
       cy.visit('https://www.seara.com.br/agendamento-seara/',  { failOnStatusCode: false })
     
