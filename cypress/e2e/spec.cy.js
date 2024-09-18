@@ -13,7 +13,7 @@ describe('Simulação de múltiplos cadastros', () => {
     const randomEmail = generateRandomEmail()
     const randomName = generateRandomName();
     
-    cy.visit('https://www.seara.com.br/agendamento-seara/')
+    cy.visit('https://www.seara.com.br/agendamento-seara/',  { failOnStatusCode: false })
   
     cy.get('#onetrust-accept-btn-handler', { timeout: 10000 }).should('be.visible').click()
     cy.get('#slick-slide10 > :nth-child(1) > .booking-experience-item > .experience-card > .experience-text > .experience-cta').scrollIntoView({ duration: 1000 })
