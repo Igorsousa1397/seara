@@ -1,32 +1,39 @@
-name: Cypress Parallel Tests
+name: Cypress Tests
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        node-version: [16.x]
-        containers: [1, 2, 3, 4]  # Número de containers para execução paralela
+        container: [1, 2, 3, 4]  # Defina quantas instâncias paralelas você quer rodar
+
     steps:
-      - name: Checkout the code
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '18'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress Tests in Parallel
+      - name: Run Cypress tests in parallel
         run: |
-          npx cypress install
-          npx cypress run --parallel --ci-build-id ${{ github.run_id }}
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          npx cypress run --parallel --ci-build-id ${{ github.run_id }} --spec "cypress/integration/cadastro.spec.js"
+
+      - name: Store Cypress videos
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-videos
+          path: cypress/videos/
