@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        container: [1, 2, 3, 4]  # Define quantas instâncias você quer rodar em paralelo
+        container: [1, 2, 3]  # Defina quantas instâncias paralelas você quer rodar
 
     steps:
       - name: Checkout the repository
@@ -33,4 +33,4 @@ jobs:
 
       - name: Run Cypress tests in parallel
         run: |
-          npx cypress run --spec "cypress/e2e/**/*.cy.js" --parallel --ci-build-id ${{ github.run_id }}
+          npx cypress run --spec "cypress/e2e/**/*.cy.js"
