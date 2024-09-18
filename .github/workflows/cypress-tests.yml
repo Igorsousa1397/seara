@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        browser: [chrome, firefox, edge, electron, chromium]  # Lista de todos os navegadores suportados
+        container: [1, 2, 3]  # Defina quantas instâncias paralelas você quer rodar
 
     steps:
       - name: Checkout the repository
@@ -31,5 +31,6 @@ jobs:
       - name: Verify Cypress installation
         run: npx cypress verify
 
-      - name: Run Cypress tests in selected browser
-        run: npx cypress run --browser ${{ matrix.browser }} --spec "cypress/e2e/**/*.cy.js"
+      - name: Run Cypress tests in parallel
+        run: |
+          npx cypress run --spec "cypress/e2e/**/*.cy.js"
