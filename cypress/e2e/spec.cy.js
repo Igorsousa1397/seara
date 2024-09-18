@@ -9,14 +9,12 @@ describe('Simulação de múltiplos cadastros', () => {
     return `teste_${randomString}`
   }
 
-  // for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 1; i++) {
     it('Deve cadastrar um novo usuário', () => {
       const randomEmail = generateRandomEmail()
       const randomName = generateRandomName()
       
       cy.visit('https://www.seara.com.br/agendamento-seara/',  { failOnStatusCode: false })
-    
-      cy.get('#onetrust-accept-btn-handler', { timeout: 30000 }).should('be.visible').click()
       cy.get('#slick-slide10 > :nth-child(1) > .booking-experience-item > .experience-card > .experience-text > .experience-cta').scrollIntoView({ duration: 1000 })
       cy.get('select[name="selected_day"]').select(1)
       cy.get('select[name="selected_experience"]').first().select(1)
@@ -33,9 +31,9 @@ describe('Simulação de múltiplos cadastros', () => {
       cy.get('.password > input').type('123456')
       cy.get('.rules > .booking-form-label > i').click()
       cy.get('.privacy > .booking-form-label > i').click()
-      // cy.get('.booking-form-button').click()
+      // cy.get('.booking-form-button').scrollIntoView().click()
       // cy.wait(15000)
       // cy.get('#tag').should('have.text', 'Pronto!')
     })
-  // }
+  }
 })
