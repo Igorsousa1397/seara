@@ -16,7 +16,7 @@ describe('Simulação de múltiplos cadastros', () => {
       
       cy.visit('https://www.seara.com.br/agendamento-seara/',  { failOnStatusCode: false })
     
-      cy.get('#onetrust-accept-btn-handler', { timeout: 10000 }).should('be.visible').click()
+      cy.get('#onetrust-accept-btn-handler', { timeout: 30000 }).should('be.visible').click()
       cy.get('#slick-slide10 > :nth-child(1) > .booking-experience-item > .experience-card > .experience-text > .experience-cta').scrollIntoView({ duration: 1000 })
       cy.get('select[name="selected_day"]').select(1)
       cy.get('select[name="selected_experience"]').first().select(1)
