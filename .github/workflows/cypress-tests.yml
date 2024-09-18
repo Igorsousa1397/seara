@@ -27,6 +27,6 @@ jobs:
       - name: Run Cypress Tests in Parallel
         run: |
           npx cypress install
-          npx cypress run --record --parallel --ci-build-id ${{ github.run_id }}
+          npx cypress run --parallel --ci-build-id ${{ github.run_id }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
