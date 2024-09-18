@@ -9,7 +9,7 @@ describe('Simulação de múltiplos cadastros', () => {
     return `teste_${randomString}`
   }
 
-  for (let i = 0; i < 5; i++) {
+  // for (let i = 0; i < 5; i++) {
     it('Deve cadastrar um novo usuário', () => {
       const randomEmail = generateRandomEmail()
       const randomName = generateRandomName()
@@ -37,5 +37,5 @@ describe('Simulação de múltiplos cadastros', () => {
       // cy.wait(15000)
       // cy.get('#tag').should('have.text', 'Pronto!')
     })
-  }
+  // }
 })

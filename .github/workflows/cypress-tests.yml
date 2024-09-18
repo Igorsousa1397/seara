@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        container: [1, 2, 3, 4]
+        container: [1, 2, 3, 4, ..., 2000]
 
     steps:
       - name: Checkout the repository
