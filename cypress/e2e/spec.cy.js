@@ -15,7 +15,7 @@ describe('Simulação de múltiplos cadastros', () => {
       const randomName = generateRandomName()
       
       cy.visit('https://www.seara.com.br/agendamento-seara/',  { failOnStatusCode: false })
-      cy.get('#slick-slide10 > :nth-child(1) > .booking-experience-item > .experience-card > .experience-text > .experience-cta').scrollIntoView({ duration: 1000 })
+      cy.get('#slick-slide10 > :nth-child(1) > .booking-experience-item > .experience-card > .experience-text > .experience-cta', { timeout: 30000 }).scrollIntoView({ duration: 1000 })
       cy.get('select[name="selected_day"]').select(1)
       cy.get('select[name="selected_experience"]').first().select(1)
       cy.get('select[name="selected_time"]').first().select(1)
