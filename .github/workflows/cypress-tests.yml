@@ -9,15 +9,11 @@ on:
       - main
 
 jobs:
-  test:
+  cypress-run:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        container: [1, 2, 3, 4]  # Defina quantas instâncias paralelas você quer rodar
-
     steps:
-      - name: Checkout code
+      - name: Checkout the repository
         uses: actions/checkout@v2
 
       - name: Set up Node.js
@@ -28,14 +24,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress tests in parallel
-        run: |
-          run: |
-            npx cypress run --ci-build-id ${{ github.run_id }} --spec "cypress/integration/cadastro.spec.js" --config defaultCommandTimeout=10000
+      - name: Verify Cypress installation
+        run: npx cypress verify
 
-
-      - name: Store Cypress videos
-        uses: actions/upload-artifact@v3  # Atualizado para v3
-        with:
-          name: cypress-videos
-          path: cypress/videos/
+      - name: Run Cypress tests
+        run: npx cypress run --spec "cypress/integration/cadastro.spec.js"
