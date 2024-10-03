@@ -1,25 +1,26 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('loginSucess', (username, password) => {
+    cy.visit('https://www.searakitfesta.com.br/')
+    cy.wait(2000)
+    cy.get('div.relative > .vtex-button > .vtex-button__label').click()
+    cy.get(':nth-child(2) > .vtex-login-2-x-button > .vtex-button').click()
+    cy.get('.vtex-login-2-x-inputContainerEmail > .vtex-input > .vtex-input-prefix__group > .vtex-styleguide-9-x-input').type(username)
+    cy.get('.relative > .vtex-input > .vtex-input-prefix__group > .vtex-styleguide-9-x-input').type(password)
+    cy.get('.vtex-button__label > .t-small').click()
+    cy.wait(2000)
+    cy.get('div.relative > .vtex-button > .vtex-button__label').click()
+    cy.get('.vtex-login-2-x-button > .t-action--small').should('have.text', 'Minha conta')
+    cy.get('#onetrust-accept-btn-handler').click()      
+  })
+
+  Cypress.Commands.add('loginInvalid', (username, password) => {
+    cy.visit('https://www.searakitfesta.com.br/')
+    cy.wait(2000)
+    cy.get('div.relative > .vtex-button > .vtex-button__label').click()
+    cy.get(':nth-child(2) > .vtex-login-2-x-button > .vtex-button').click()
+    cy.get('.vtex-login-2-x-inputContainerEmail > .vtex-input > .vtex-input-prefix__group > .vtex-styleguide-9-x-input').type(username)
+    cy.get('.relative > .vtex-input > .vtex-input-prefix__group > .vtex-styleguide-9-x-input').type(password)
+    cy.get('.vtex-button__label > .t-small').click()
+    cy.get('.vtex-login-2-x-formError').should('have.text', 'Usuário e/ou senha incorretos')
+         
+  })
+  

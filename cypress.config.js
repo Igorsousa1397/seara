@@ -10,6 +10,8 @@
       setupNodeEvents(on, config) {
         // implement node event listeners here
       },
+      viewportWidth: 1380, // Ajuste conforme o tamanho da sua tela
+      viewportHeight: 800,  // Exemplo para uma tela pequena
     },
     
   })
