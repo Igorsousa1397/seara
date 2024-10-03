@@ -1,5 +1,5 @@
 describe('HomePage', () => {
-    const username = "igor.sousa@opah.com.br"
+    const username = "yativ26889@scarden.com"
     const password = "Senha@123"
     const passwordIvalid = "Incorreta@123"
 
@@ -7,7 +7,7 @@ describe('HomePage', () => {
         cy.loginSucess(username, password)
     })
 
-    it.only('Login invalido',() => {
+    it('Login invalido',() => {
         cy.loginInvalid(username, passwordIvalid)
     })
 
