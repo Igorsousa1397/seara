@@ -9,7 +9,6 @@ Cypress.Commands.add('loginSucess', (username, password) => {
     cy.wait(2000)
     cy.get('div.relative > .vtex-button > .vtex-button__label').click()
     cy.get('.vtex-login-2-x-button > .t-action--small').should('have.text', 'Minha conta')
-    cy.get('#onetrust-accept-btn-handler').click()      
   })
 
   Cypress.Commands.add('loginInvalid', (username, password) => {
@@ -21,6 +20,65 @@ Cypress.Commands.add('loginSucess', (username, password) => {
     cy.get('.relative > .vtex-input > .vtex-input-prefix__group > .vtex-styleguide-9-x-input').type(password)
     cy.get('.vtex-button__label > .t-small').click()
     cy.get('.vtex-login-2-x-formError').should('have.text', 'Usuário e/ou senha incorretos')
-         
   })
-  
+
+  Cypress.Commands.add('adicionaProdutoCarrinho', () => {
+    cy.visit('https://www.searakitfesta.com.br/')
+    cy.wait(2000)
+    cy.get('[aria-label="2 of 6"] > .vtex-slider-layout-0-x-slideChildrenContainer > .vtex-product-summary-2-x-container > .vtex-product-summary-2-x-clearLink > .vtex-product-summary-2-x-element > .vtex-flex-layout-0-x-flexRow--shelf-image > .mt0 > .items-stretch > .vtex-flex-layout-0-x-flexCol > :nth-child(1) > .vtex-product-summary-2-x-imageWrapper > .dib > .vtex-product-summary-2-x-imageNormal').scrollIntoView().should('be.visible').click()
+    cy.get('.mt0 > :nth-child(2) > .vtex-button > .vtex-button__label', { timeout: 10000 }).should('be.visible').click()
+    cy.get('input.vtex-styleguide-9-x-input').should('be.visible').eq(1).type('07752-130')
+    cy.contains('button', 'Verificar CEP').should('be.visible').click()
+    cy.get('span.mb4.db.centered-content').should('be.visible').and('contain', 'Seu CEP é atendido pela nossa loja.')
+    cy.get('.popup-zipcode-user').find('button').should('be.visible').click()
+    cy.get('.vtex-flex-layout-0-x-flexRowContent--header--desktop--wrapper--minicart--header > :nth-child(1) > .vtex-flex-layout-0-x-flexRow > .mt0 > :nth-child(2) > .vtex-rich-text-0-x-container > .vtex-rich-text-0-x-wrapper > .lh-copy').should('be.visible')
+    cy.get('.vtex-flex-layout-0-x-flexRowContent--header--desktop--wrapper--minicart--product-list--content').should('be.visible').and('contain', 'Kit Turma da Mônica')
+  })
+
+  Cypress.Commands.add('removeProdutoCarrinho', () => {
+    cy.visit('https://www.searakitfesta.com.br/')
+    cy.wait(2000)
+    cy.get('[aria-label="2 of 6"] > .vtex-slider-layout-0-x-slideChildrenContainer > .vtex-product-summary-2-x-container > .vtex-product-summary-2-x-clearLink > .vtex-product-summary-2-x-element > .vtex-flex-layout-0-x-flexRow--shelf-image > .mt0 > .items-stretch > .vtex-flex-layout-0-x-flexCol > :nth-child(1) > .vtex-product-summary-2-x-imageWrapper > .dib > .vtex-product-summary-2-x-imageNormal').scrollIntoView().should('be.visible').click()
+    cy.get('.mt0 > :nth-child(2) > .vtex-button > .vtex-button__label', { timeout: 10000 }).should('be.visible').click()
+    cy.get('input.vtex-styleguide-9-x-input').should('be.visible').eq(1).type('07752-130')
+    cy.contains('button', 'Verificar CEP').should('be.visible').click()
+    cy.get('span.mb4.db.centered-content').should('be.visible').and('contain', 'Seu CEP é atendido pela nossa loja.')
+    cy.get('.popup-zipcode-user').find('button').should('be.visible').click()
+    cy.get('.vtex-flex-layout-0-x-flexRowContent--header--desktop--wrapper--minicart--header > :nth-child(1) > .vtex-flex-layout-0-x-flexRow > .mt0 > :nth-child(2) > .vtex-rich-text-0-x-container > .vtex-rich-text-0-x-wrapper > .lh-copy').should('be.visible')
+    cy.get('.vtex-flex-layout-0-x-flexRowContent--header--desktop--wrapper--minicart--product-list--content').should('be.visible').and('contain', 'Kit Turma da Mônica')
+    cy.get('#remove-button-77').click()
+    cy.get('.vtex-flex-layout-0-x-flexRow > .mt0 > .items-stretch > .vtex-flex-layout-0-x-flexCol > :nth-child(1) > .vtex-rich-text-0-x-container > .vtex-rich-text-0-x-wrapper > .lh-copy').should('be.visible').and('contain', 'Ops, carrinho vazio.')
+  })
+
+  Cypress.Commands.add('acessarCarrinho', (email, senha) => {
+    cy.visit('https://www.searakitfesta.com.br/')
+    cy.wait(2000)
+    cy.get('[aria-label="2 of 6"] > .vtex-slider-layout-0-x-slideChildrenContainer > .vtex-product-summary-2-x-container > .vtex-product-summary-2-x-clearLink > .vtex-product-summary-2-x-element > .vtex-flex-layout-0-x-flexRow--shelf-image > .mt0 > .items-stretch > .vtex-flex-layout-0-x-flexCol > :nth-child(1) > .vtex-product-summary-2-x-imageWrapper > .dib > .vtex-product-summary-2-x-imageNormal').scrollIntoView().should('be.visible').click()
+    cy.get('.mt0 > :nth-child(2) > .vtex-button > .vtex-button__label', { timeout: 10000 }).should('be.visible').click()
+    cy.get('input.vtex-styleguide-9-x-input').should('be.visible').eq(1).type('07752-130')
+    cy.contains('button', 'Verificar CEP').should('be.visible').click()
+    cy.get('span.mb4.db.centered-content').should('be.visible').and('contain', 'Seu CEP é atendido pela nossa loja.')
+    cy.get('.popup-zipcode-user').find('button').should('be.visible').click()
+    cy.get('.vtex-flex-layout-0-x-flexRowContent--header--desktop--wrapper--minicart--header > :nth-child(1) > .vtex-flex-layout-0-x-flexRow > .mt0 > :nth-child(2) > .vtex-rich-text-0-x-container > .vtex-rich-text-0-x-wrapper > .lh-copy').should('be.visible')
+    cy.get('.vtex-flex-layout-0-x-flexRowContent--header--desktop--wrapper--minicart--product-list--content').should('be.visible').and('contain', 'Kit Turma da Mônica')
+    cy.get('#proceed-to-checkout').click({force: true})
+    cy.get('#loginWithUserAndPasswordBtn').click()
+    cy.wait(2000)
+    cy.get('#inputEmail').type(email)
+    cy.get('#inputPassword').type(senha)
+    cy.get('#vtexIdUI-form-classic-login > .modal-footer > #classicLoginBtn').click()
+    cy.get('#cart-to-orderform', { timeout: 10000 }).click()
+  })
+
+  Cypress.Commands.add('preencherIdentificacao', () => {
+    cy.wait(1000)
+    cy.get('#client-first-name').type('teste')
+    cy.get('#client-last-name').click('teste')
+    cy.get('#client-document').type('12345678909')
+    cy.get('#client-birthDate').type('13/12/1997')
+    cy.get('#client-phone').type('1199999-8888')
+    cy.get('#client-phone-confirm').type('1199999-8888')
+    cy.get('#go-to-shipping').click()
+
+
+  })

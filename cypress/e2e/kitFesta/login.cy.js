@@ -1,4 +1,4 @@
-describe('HomePage', () => {
+describe('Login de usuário', () => {
     const username = "yativ26889@scarden.com"
     const password = "Senha@123"
     const passwordIvalid = "Incorreta@123"
@@ -10,5 +10,4 @@ describe('HomePage', () => {
     it('Login invalido',() => {
         cy.loginInvalid(username, passwordIvalid)
     })
-
 })
