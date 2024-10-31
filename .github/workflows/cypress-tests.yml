@@ -31,6 +31,5 @@ jobs:
       - name: Verify Cypress installation
         run: npx cypress verify
 
-      - name: Run Cypress tests in parallel
-        run: |
-          npx cypress run --spec "cypress/e2e/searaHub/cadastroGourmet.cy.js"
+      - name: Run Cypress tests
+        run: npx cypress run --spec "cypress/e2e/searaHub/cadastroGourmet.cy.js"
