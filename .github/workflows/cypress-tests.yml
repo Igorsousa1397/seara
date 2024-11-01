@@ -4,9 +4,6 @@ on: [push, pull_request]
 
 jobs:
   cypress-parallel:
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 9
     strategy:
