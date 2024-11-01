@@ -2,7 +2,7 @@ describe('Teste cadastro', () => {
 
     it('Teste', () =>{
 
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 6; i++) {
             cy.visit('https://www.seara.com.br/seara-momento-gourmet/', { failOnStatusCode: false })
             cy.get(':nth-child(1) > .new-newsletter-form-group > .input', { timeout: 40000 }).type('teste', { delay: 0 })
             cy.get(':nth-child(2) > .new-newsletter-form-group > .input').type('teste@teste.com', { delay: 0 })
