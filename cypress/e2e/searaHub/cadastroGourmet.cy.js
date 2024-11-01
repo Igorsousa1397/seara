@@ -11,7 +11,7 @@ describe('Teste cadastro', () => {
             cy.get('i').click()
             cy.get('.new-newsletter-submit').click()
             cy.wait(3000)
-            cy.get('.new-newsletter-success > a').click()
+            cy.get('.new-newsletter-success > a').click({force: true})
         }
     })
 })
