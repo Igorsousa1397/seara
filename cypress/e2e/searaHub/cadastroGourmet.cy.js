@@ -7,7 +7,7 @@ describe('Teste cadastro', () => {
             cy.get(':nth-child(1) > .new-newsletter-form-group > .input', { timeout: 40000 }).type('teste')
             cy.get(':nth-child(2) > .new-newsletter-form-group > .input').type('teste@teste.com')
             cy.get('.input-phone').type('11999999999')
-            cy.get('.input-number').type('1997-12-13')
+            cy.get('.input-number').type('13-12-1997')
             cy.get('i').click()
             cy.get('.new-newsletter-submit').click()
             cy.wait(3000)
