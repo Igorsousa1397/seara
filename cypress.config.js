@@ -1,6 +1,7 @@
   const { defineConfig } = require("cypress")
 
   module.exports = defineConfig({
+    projectId: 'your_project_id',
     e2e: {
       baseUrl: 'https://www.seara.com.br/agendamento-seara/',
       retries: {
