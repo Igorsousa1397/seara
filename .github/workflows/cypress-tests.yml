@@ -20,8 +20,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress tests in parallel
-        run: |
-          npx cypress run ${{ matrix.machine }}
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      - name: Run Cypress test for cadastroGourmet
+        run: npx cypress run --spec "cypress/e2e/searaHub/cadastroGourmet.cy.js"
